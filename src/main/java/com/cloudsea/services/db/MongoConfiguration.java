@@ -1,5 +1,8 @@
 package com.cloudsea.services.db;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientOptions;
 
@@ -12,7 +15,10 @@ import com.mongodb.MongoClientOptions;
  *
  */
 
+@Configuration
 public class MongoConfiguration {
+
+	@Bean
 	public MongoClient getMongoClient() {
 		MongoClientOptions mongoOptions = new MongoClientOptions.Builder().connectionsPerHost(8)
 				.build();

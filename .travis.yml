@@ -3,5 +3,5 @@ jdk:
  - oraclejdk8
 cache:
   directories:
-    - /home/travis/.m2/
+    - $HOME/.m2/
 script: "mvn clean install"

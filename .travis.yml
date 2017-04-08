@@ -1,4 +1,7 @@
 language: java
 jdk:
  - oraclejdk8
+cache:
+  directories:
+    - /home/travis/.m2/
 script: "mvn clean install"

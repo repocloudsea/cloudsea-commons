@@ -10,7 +10,7 @@ import com.mongodb.MongoClientOptions;
  * A configuration class to create
  * MongoClient
  * 
- * @ToDo Move the Mongo URI to read from
+ *  Move the Mongo URI to read from
  * properties file.
  * 
  * @author shahbaz03

@@ -22,7 +22,7 @@ public class MongoConfiguration {
 	public MongoClient getMongoClient() {
 		MongoClientOptions mongoOptions = new MongoClientOptions.Builder().connectionsPerHost(8)
 				.build();
-		MongoClient client = new MongoClient("localhost:27017", mongoOptions);
+		MongoClient client = new MongoClient("139.59.33.41:27017", mongoOptions);
 		return client;
 	}
 

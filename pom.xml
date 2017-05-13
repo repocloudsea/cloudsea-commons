@@ -3,7 +3,7 @@
 
 	<groupId>com.cloudsea.services</groupId>
 	<artifactId>cloudsea-commons</artifactId>
-	<version>0.0.5</version>
+	<version>0.0.8</version>
 	<packaging>jar</packaging>
 	<name>cloudsea-commons</name>
 	<url>http://maven.apache.org</url>

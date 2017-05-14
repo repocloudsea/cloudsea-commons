@@ -77,7 +77,7 @@ public class MutiTenantMongoConfiguration {
 				.connectionsPerHost(5)//
 				.connectTimeout(2000);//
 
-		MongoClientURI mongoClientURI = new MongoClientURI("mongodb://localhost:27017/demo", mongoOptionBuilder);
+		MongoClientURI mongoClientURI = new MongoClientURI("mongodb://localhost:8913157/demo", mongoOptionBuilder);
 
 		return new MultiTenantMongoDbFactory(mongoClientURI);
 	}

@@ -1,4 +1,4 @@
-package com.cloudsea.services.db;
+package com.cloudsea.commons.config;
 
 import java.net.UnknownHostException;
 
@@ -11,12 +11,13 @@ import org.springframework.web.context.request.RequestContextHolder;
 import com.mongodb.DB;
 import com.mongodb.MongoClientURI;
 
-public class MultiTenantMongoDbFactory extends SimpleMongoDbFactory {
+public class CloudSeaMongoDbFactory extends SimpleMongoDbFactory {
 
-	public String DEFAULT_DB = "demo";
+	private String database;
 
-	public MultiTenantMongoDbFactory(MongoClientURI uri) throws UnknownHostException {
+	public CloudSeaMongoDbFactory(MongoClientURI uri) throws UnknownHostException {
 		super(uri);
+		database = uri.getDatabase();
 	}
 
 	@Override
@@ -27,7 +28,7 @@ public class MultiTenantMongoDbFactory extends SimpleMongoDbFactory {
 		if (orgId instanceof String && StringUtils.isNotBlank(orgId.toString()))
 			return getDb(orgId.toString());
 
-		return super.getDb(DEFAULT_DB);
+		return super.getDb(database);
 	}
 
 }

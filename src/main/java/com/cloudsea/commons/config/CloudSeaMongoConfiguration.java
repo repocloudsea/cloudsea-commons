@@ -57,17 +57,6 @@ public class CloudSeaMongoConfiguration {
 		return new RestTemplate();
 	}
 
-	boolean isOrgarnizationExists(String orgId) {
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-
-		ResponseEntity<String> result = getRestTemplate().exchange("http://localhost:8082/findById/" + orgId,
-				HttpMethod.GET, entity, String.class);
-		return result.getStatusCode() != HttpStatus.NO_CONTENT;
-	}
-
 	@Bean
 	public HandlerInterceptor getRequestInterceptorForDatabase() {
 		return new HandlerInterceptor() {
@@ -84,12 +73,6 @@ public class CloudSeaMongoConfiguration {
 
 				return addToRequestContextAndReturnTrue(request.getHeader("org_id"));
 
-			}
-
-			private boolean addToRequestContextAndReturnTrue(String orgId) {
-				RequestContextHolder.getRequestAttributes()
-						.setAttribute("org_id", orgId, RequestAttributes.SCOPE_REQUEST);
-				return true;
 			}
 
 			@Override
@@ -113,9 +96,9 @@ public class CloudSeaMongoConfiguration {
 	@Primary
 	public MongoDbFactory mongoDbFactory() throws UnknownHostException {
 
-		Builder mongoOptionBuilder = MongoClientOptions.builder()//
-				.connectionsPerHost(5)//
-				.connectTimeout(2000);//
+		Builder mongoOptionBuilder = MongoClientOptions.builder()
+				.connectionsPerHost(5)
+				.connectTimeout(2000);
 
 		MongoClientURI mongoClientURI = new MongoClientURI(
 				"mongodb://" + mongoHost + ":" + mongoPort + "/" + mongoDatabase, mongoOptionBuilder);
@@ -127,6 +110,22 @@ public class CloudSeaMongoConfiguration {
 	@Primary
 	public MongoTemplate mongoTemplate() throws UnknownHostException {
 		return new MongoTemplate(mongoDbFactory());
+	}
+
+	private boolean addToRequestContextAndReturnTrue(String orgId) {
+		RequestContextHolder.getRequestAttributes()
+				.setAttribute("org_id", orgId, RequestAttributes.SCOPE_REQUEST);
+		return true;
+	}
+
+	private boolean isOrgarnizationExists(String orgId) {
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+		ResponseEntity<String> result = getRestTemplate().exchange("http://localhost:8082/findById/" + orgId,
+				HttpMethod.GET, entity, String.class);
+		return result.getStatusCode() != HttpStatus.NO_CONTENT;
 	}
 
 }

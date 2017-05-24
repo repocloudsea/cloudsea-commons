@@ -88,7 +88,7 @@ public class CloudSeaMongoConfiguration {
 	}
 
 	@Bean
-	public MappedInterceptor myMappedInterceptor() {
+	public MappedInterceptor cloudSeaInterceptor() {
 		return new MappedInterceptor(new String[] { "/cloudsea/**" }, getRequestInterceptorForDatabase());
 	}
 

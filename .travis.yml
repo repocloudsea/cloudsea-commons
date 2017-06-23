@@ -1,7 +1,9 @@
 language: java
 jdk:
- - oraclejdk8
-script: "mvn clean install"
-script: "mvn cobertura:cobertura"
+- oraclejdk8
+script: mvn cobertura:cobertura
 after_success:
- - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
+notifications:
+  slack:
+    secure: fxgbBcsbJJVwPVJd4FunAdAlAbO3Vxknoqjr34Bn669cd2slIPqnBJrD/CT8VyVhdXSeVKgdP1rqb4tNyyhM482jc2fNutLbT4j8ixL/66kl3WffFSCL18zMRfSOj+vORgpxkW23BgQSc3a5s6PJ+/O37QpY3Y+72bRROHxG/MLE7dTT5Uy494I6PBOoUG6sJagIrqnpPvukJzqvXRTEbMryK5tJuNrqGHeghot0kFh7XOQFczZ1o2AZxcofmqbaWXSmoej+UjuLeZo+UvX82bxBvAhRIXqK07tvDHguhVHSu2DH5VKNrh9kBq9vLtZglrlz5omPBTOLY4BeRwciONcgDZoaCTygIcYKqxL9814dV64t9CqBIXtZ4Z0pPyHW3tQshyAgtLoCvqEeBtUOBsFQyVu1vYjIkPEHEcD06fGizgq8ZTYA6e6mSl7iAzEWnvJUvc/WloshpiF0MgpZB6faP36q5o8weG9jLkfeEK9sU9+Q9yaOihcH6k55S9NQd9GR1KS1I8DaDh++lHAeUOY+AKbWAE1QXHwrJHmp3JvRBxCtEjzS/E1+S2hc9IhUuIDniYRlO4tDnVffVOs2UbcCQEDdPBLzlvqi5jpSXMayeb96JyYr7tgwIEiwGsG3I5hyQX5J0xTgEOytcwTr1XC9R3rGSH3jcbrocxvusjE=
